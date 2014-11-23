@@ -5,9 +5,9 @@ output: html_document
 ## Introduction
 Considerable amount of research have been conducted by Universities and businesses on human wear devices for monitoring human's physical activities. A branch of the HAR research is focusing on accuracy of the intended activities, for example, daily routine activities of elderly people and  athletics body movement during their regular exercise.   
 
-We will use the data set in <http://groupware.les.inf.puc-rio.br/har> to predict the accuracy by which the weight lifters are using dumbbell during their exercise. Six subjects are monitored while carrying out the unilateral dumbbell biceps curl in five different ways: exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D), and throwing the hips to the front (Class E). Class A corresponds to proper execution of the activity, whereas other four classes correspond to common mistakes. During these activities accelerometer attached to the subject arm, forearm, belt, and dumbbell are used to record the movement. We will build a prediction learning model from the data in the training set. The predict will be used to classify the observations in the test set.  
+We will use the data set in <http://groupware.les.inf.puc-rio.br/har> to predict the accuracy by which the weight lifters are using dumbbell during their exercise. Six subjects are monitored while carrying out the unilateral dumbbell biceps curl in five different ways: exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D), and throwing the hips to the front (Class E). Class A corresponds to proper execution of the activity, whereas other four classes correspond to common mistakes. During these activities accelerometer attached to the subject arm, forearm, belt, and dumbbell are used to record the movement. We will build a prediction learning model from the data in the training set. The prediction model will be used to classify the observations in the test set.  
 
-Following packages and libraries are required: caret, Random Forest, Hmisc, AppliedPredictiveModeling.
+Following packages and libraries are required: caret, Random Forest, AppliedPredictiveModeling.
 ```{r}
 library(caret)
 library(randomForest)
@@ -40,7 +40,7 @@ train <- train[,-c(1:7)]
 test <- test[,-c(1:7)]
 ```
 
-Predictors with large number of NA (> 19000) are removed from both data sets and the remaining ones except classe in train and problem_id in test, are covnerted to numeric. The cross-table between user_name and classe in train set shows a uniform distribution of observations for each pair of class values. This is an indication that the model should be able to predict an outcome for every combination of class pairs. Highly correlated predictors are also removed from the data sets.
+Predictors with large number of NA (> 19000) are removed from both data sets and the remaining ones except classe in train and problem_id in test, are covnerted to numeric. The cross-table between user_name and classe in train set shows a uniform distribution of observations for each pair of class (classe and user_name) values. This is an indication that the model should be able to predict an outcome for every combination of class pairs. Highly correlated predictors are also removed from the data sets. There were no duplicate observation in the training set. 
 
 ```{r}
 Corr <- cor(train[,-53])
