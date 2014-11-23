@@ -1,5 +1,5 @@
 ---
-title: "Human Activity Recognition: Accuracy of Activities in Weight Lifting"
+title: 'Human Activity Recognition: Accuracy of Activities in Weight Lifting'
 output: html_document
 ---
 ## Introduction
@@ -65,10 +65,10 @@ head(varImp(rfmodel, sort=T, scale=F))
 plot(rfmodel, main="Estimate of error rate")
 varImpPlot(rfmodel, sort=T)
 cv <- rfcv(stest[,-1],stest[,1],cv.fold=10)
-cv$error.cv
+with(cv, plot(n.var, error.cv, type="l"))
 ```
 
-The plot of estimate error shows the errors for each class, trending down as the number of trees grow and the plot of varImp displays the contribution of the predictors to the model. Results of cross-validation shows the error for the number of variables used in each step of building the model.    
+The plot of estimate error shows the errors for each class, trending down as the number of trees grow and the plot of varImp displays the contribution of the predictors to the model. Results of cross-validation shows the error for the number of variables used in each step of building the model. Error decreases rapidly as number of variables increases, as shown in the graph.    
 
 ## Refining the Model
 
